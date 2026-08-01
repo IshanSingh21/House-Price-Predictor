@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered house price prediction tool. Enter property details and get an instant price estimate using machine learning.">
+    <title>House Price Predictor — AI-Powered Estimates</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Animated background orbs -->
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🏠</span>
+                <div>
+                    <h1>House Price Predictor</h1>
+                    <p class="subtitle">AI-Powered Real Estate Estimates</p>
+                </div>
+            </div>
+            <div class="badge">
+                <span class="badge-dot"></span>
+                ML Model Active
+            </div>
+        </header>
+
+        <div class="main-grid">
+            <!-- Input Form Card -->
+            <div class="card form-card">
+                <div class="card-header">
+                    <h2>🔧 Property Details</h2>
+                    <p>Adjust the features below to get a prediction</p>
+                </div>
+
+                <form id="prediction-form">
+                    <!-- Row 1: Sqft + Bedrooms -->
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="sqft">
+                                <span class="label-icon">📐</span>
+                                Square Footage
+                            </label>
+                            <div class="range-wrapper">
+                                <input type="range" id="sqft" name="sqft" min="800" max="5000" value="2000" step="50">
+                                <div class="range-value" id="sqft-value">2,000 sq ft</div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="bedrooms">
+                                <span class="label-icon">🛏️</span>
+                                Bedrooms
+                            </label>
+                            <div class="select-pills" id="bedrooms-pills" data-name="bedrooms">
+                                <button type="button" class="pill" data-value="1">1</button>
+                                <button type="button" class="pill" data-value="2">2</button>
+                                <button type="button" class="pill active" data-value="3">3</button>
+                                <button type="button" class="pill" data-value="4">4</button>
+                                <button type="button" class="pill" data-value="5">5</button>
+                                <button type="button" class="pill" data-value="6">6</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Bathrooms + Age -->
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="bathrooms">
+                                <span class="label-icon">🚿</span>
+                                Bathrooms
+                            </label>
+                            <div class="select-pills" id="bathrooms-pills" data-name="bathrooms">
+                                <button type="button" class="pill" data-value="1">1</button>
+                                <button type="button" class="pill active" data-value="2">2</button>
+                                <button type="button" class="pill" data-value="3">3</button>
+                                <button type="button" class="pill" data-value="4">4</button>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="age">
+                                <span class="label-icon">📅</span>
+                                House Age
+                            </label>
+                            <div class="range-wrapper">
+                                <input type="range" id="age" name="age" min="0" max="100" value="15" step="1">
+                                <div class="range-value" id="age-value">15 years</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Lot Size + Garage -->
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="lot_size">
+                                <span class="label-icon">🌳</span>
+                                Lot Size
+                            </label>
+                            <div class="range-wrapper">
+                                <input type="range" id="lot_size" name="lot_size" min="0.1" max="2.5" value="0.5" step="0.05">
+                                <div class="range-value" id="lot_size-value">0.50 acres</div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="garage">
+                                <span class="label-icon">🚗</span>
+                                Garage Capacity
+                            </label>
+                            <div class="select-pills" id="garage-pills" data-name="garage">
+                                <button type="button" class="pill" data-value="0">None</button>
+                                <button type="button" class="pill" data-value="1">1 Car</button>
+                                <button type="button" class="pill active" data-value="2">2 Cars</button>
+                                <button type="button" class="pill" data-value="3">3 Cars</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Neighborhood + Pool -->
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="neighborhood">
+                                <span class="label-icon">🏘️</span>
+                                Neighborhood Quality
+                            </label>
+                            <div class="range-wrapper">
+                                <input type="range" id="neighborhood" name="neighborhood" min="1" max="10" value="6" step="1">
+                                <div class="range-value" id="neighborhood-value">6 / 10</div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="has_pool">
+                                <span class="label-icon">🏊</span>
+                                Swimming Pool
+                            </label>
+                            <div class="select-pills" id="has_pool-pills" data-name="has_pool">
+                                <button type="button" class="pill active" data-value="0">No Pool</button>
+                                <button type="button" class="pill" data-value="1">Has Pool</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 5: Distance + Condition -->
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="distance_city">
+                                <span class="label-icon">🏙️</span>
+                                Distance to City Center
+                            </label>
+                            <div class="range-wrapper">
+                                <input type="range" id="distance_city" name="distance_city" min="0.5" max="40" value="10" step="0.5">
+                                <div class="range-value" id="distance_city-value">10.0 miles</div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="condition">
+                                <span class="label-icon">⭐</span>
+                                Overall Condition
+                            </label>
+                            <div class="range-wrapper">
+                                <input type="range" id="condition" name="condition" min="1" max="10" value="7" step="1">
+                                <div class="range-value" id="condition-value">7 / 10</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="predict-btn" id="predict-btn">
+                        <span class="btn-text">🔮 Predict Price</span>
+                        <span class="btn-loader" style="display: none;">
+                            <span class="spinner"></span> Predicting...
+                        </span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Results Panel -->
+            <div class="card result-card" id="result-card">
+                <div class="result-placeholder" id="result-placeholder">
+                    <div class="placeholder-icon">🏡</div>
+                    <h3>Enter Property Details</h3>
+                    <p>Adjust the sliders and options, then click <strong>Predict Price</strong> to get an AI-powered estimate.</p>
+                </div>
+
+                <div class="result-content" id="result-content" style="display: none;">
+                    <div class="price-section">
+                        <span class="price-label">Estimated Price</span>
+                        <div class="price-display">
+                            <span class="price-dollar">$</span>
+                            <span class="price-amount" id="price-amount">0</span>
+                        </div>
+                        <div class="price-confidence">
+                            <span class="confidence-dot"></span>
+                            ML Model Prediction
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="importance-section">
+                        <h3>📊 Feature Importance</h3>
+                        <p class="importance-desc">How much each feature contributes to the prediction</p>
+                        <div id="importance-bars"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Built with 🧠 scikit-learn &amp; Flask · House Price Prediction ML Project</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
