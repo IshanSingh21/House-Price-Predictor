@@ -29,6 +29,9 @@ def load_model():
     print(f"✅ Model loaded successfully")
     print(f"   Features: {model_data['feature_names']}")
 
+# Load the model when the app starts (works with Gunicorn/Render)
+load_model()
+print("\n🌐 Starting server at http://127.0.0.1:5000")
 
 @app.route('/')
 def index():
@@ -77,6 +80,4 @@ def health():
 
 
 if __name__ == '__main__':
-    load_model()
-    print("\n🌐 Starting server at http://127.0.0.1:5000")
     app.run(debug=True, host='127.0.0.1', port=5000)
